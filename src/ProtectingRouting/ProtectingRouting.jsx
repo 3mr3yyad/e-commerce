@@ -2,10 +2,10 @@
 
 import { Navigate } from 'react-router-dom'
 
-export default function ProtectingRouting(children) {
+export default function ProtectingRouting({ children }) {
     if (localStorage.getItem("token")) {
-        return children
+        return children;
     } else {
-        return <Navigate to="/login"/>
+        return <Navigate to="/e-commerce/login" />;
     }
 }

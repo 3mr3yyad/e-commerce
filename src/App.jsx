@@ -18,16 +18,16 @@ export default function App() {
     {
       path: 'e-commerce', element: <Layout />,
       children: [
-      {index:true, element: <ProtectingRouting> <Home/> </ProtectingRouting>},
-      {path:'product', element: <ProtectingRouting> <Product/> </ProtectingRouting>},
-      {path:'cart', element: <ProtectingRouting> <Cart/> </ProtectingRouting>},
-      {path:'brands', element: <ProtectingRouting> <Brands/> </ProtectingRouting>},
-      {path:'category', element: <ProtectingRouting> <Category/> </ProtectingRouting>},
-      {path:'login', element: <Login/>},
-      {path: 'register', element: <SignUp />},
-      {path: 'forget-password', element: <ForgetPassword/>},
-      {path: 'update-password', element: <UpdatePasword/> },
-      {path:'*', element: <Notfound/>},
+        {index:true, element: <ProtectingRouting> <Home/> </ProtectingRouting>},
+        {path: 'product', element: <ProtectingRouting> <Product/> </ProtectingRouting>},
+        {path: 'cart', element: <ProtectingRouting> <Cart/> </ProtectingRouting>},
+        {path: 'brands', element: <ProtectingRouting> <Brands/> </ProtectingRouting>},
+        {path: 'category', element: <ProtectingRouting> <Category/> </ProtectingRouting>},
+        {path: 'login', element: <Login/>},
+        {path: 'register', element: <SignUp />},
+        {path: 'forget-password', element: <ForgetPassword/>},
+        {path: 'update-password', element: <UpdatePasword/> },
+        {path: '*', element: <Notfound/>},
     ]}
   ])
   return (
