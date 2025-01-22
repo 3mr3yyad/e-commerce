@@ -16,7 +16,7 @@ import ProtectingRouting from "./ProtectingRouting/ProtectingRouting";
 export default function App() {
   let router = createBrowserRouter([
     {
-      path: '', element: <Layout />,
+      path: 'e-commerce', element: <Layout />,
       children: [
       {index:true, element: <ProtectingRouting> <Home/> </ProtectingRouting>},
       {path:'product', element: <ProtectingRouting> <Product/> </ProtectingRouting>},
