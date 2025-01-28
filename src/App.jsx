@@ -12,6 +12,7 @@ import Brands from "./component/Brands/Brands";
 import Category from "./component/Category/Category";
 import AuthContextProvider from "./Context/AuthContextProvider";
 import ProtectingRouting from "./ProtectingRouting/ProtectingRouting";
+import ProductDetails from './component/ProductDetails/ProductDetails';
 
 export default function App() {
   let router = createBrowserRouter([
@@ -23,6 +24,7 @@ export default function App() {
         {path: 'cart', element: <ProtectingRouting> <Cart/> </ProtectingRouting>},
         {path: 'brands', element: <ProtectingRouting> <Brands/> </ProtectingRouting>},
         {path: 'category', element: <ProtectingRouting> <Category/> </ProtectingRouting>},
+        {path: 'product-details/:id', element: <ProtectingRouting> <ProductDetails/> </ProtectingRouting>},
         {path: 'login', element: <Login/>},
         {path: 'register', element: <SignUp />},
         {path: 'forget-password', element: <ForgetPassword/>},

@@ -74,7 +74,7 @@ export default function Login() {
           </div>
 
           <button disabled={!(loginForm.isValid && loginForm.dirty)}
-          type="submit" className="ml-auto text-white bg-main hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-ma disabled:opacity-50 disabled:hover:bg-main">Login</button>
+          type="submit" className="ml-auto text-white bg-main hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-50 disabled:hover:bg-main">Login</button>
         <Link to="/e-commerce/forget-password" className='ms-5 mt-3 text-sm text-blue-500 hover:text-blue-700 hover:underline'>Forgot your password..?</Link>
         </form>
       </div>

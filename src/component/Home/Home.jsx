@@ -1,7 +1,103 @@
-import React from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import MainSlider from '../MainSlider/MainSlider'
+import CategorySlider from './../CategorySlider/CategorySlider';
 
 export default function Home() {
+  let [productList, setproductList] = useState(null)
+  let [pagesNums, setPagesNums] = useState(null)
+  let [loading, setLoading] = useState(true)
+
+  function getAllProducts(page = 1) {
+    setLoading(true)
+    axios
+      .get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}`)
+      .then((req) => {
+        setproductList(req.data.data)
+        let nums = []
+        for (let i = 1; i <= req.data.metadata.numberOfPages; i++) {
+          nums.push(i)
+        }
+        setPagesNums(nums)
+        
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        setLoading(false)
+    })
+  }
+  useEffect(() => {
+    getAllProducts();
+  }, [])
+
+  function getPageNum(e) {
+    let page = e.target.getAttribute("page")
+    getAllProducts(page)
+  }
+
   return (
-    <div>Home</div>
+    <>
+      {loading ? <div className='flex justify-center items-center h-screen'><span className="loader"></span></div> :
+        <div className='w-11/12 mx-auto my-6'>
+          <MainSlider />
+          <CategorySlider/>
+          <div className='flex flex-wrap'>
+            {productList?.map((product) => {
+              let { _id, title, imageCover, price, ratingsAverage, category } = product;
+              let { name } = category;
+              return (
+                <div key={_id} className='lg:w-2/12 md:w-3/12 sm:w-6/12 w-full p-2 mb-2 hover:border rounded hover:border-main duration-500 group overflow-hidden'>
+                  <Link to={`/e-commerce/product-details/${_id}`}>
+                  <img src={imageCover} className='w-full' alt={title} />
+                  <h5 className='text-main text-sm'>{name}</h5>
+                  <h2 className='text-lg font-semibold mb-3'>{title.split(" ").slice(0, 2).join(' ')}</h2>
+                  <div className='flex justify-between'>
+                    <p>{price} EGP</p>
+                    <span className='text-gray-500'><i className='fa-solid fa-star text-yellow-300'></i>{ratingsAverage}</span>
+                  </div>
+                  </Link>
+                  <button className='bg-main text-white p-2 rounded hover:bg-green-600 w-full mt-3 translate-y-20 group-hover:translate-y-0 transition-all'>add to cart <i className="fa-solid fa-circle-plus"></i></button>
+                </div>
+              )
+            })}
+
+          </div>
+          <nav aria-label="Page navigation example">
+            <ul className="flex justify-center items-center -space-x-px h-10 text-base mt-5">
+              <li>
+                <a className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700     ">
+                  <span className="sr-only">Previous</span>
+                  <svg className="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 1 1 5l4 4" />
+                  </svg>
+                </a>
+              </li>
+              {pagesNums?.map((el) => {
+                return (
+                  <li key={el} onClick={getPageNum}>
+                    <a page={el} href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{el}</a>
+                  </li>
+                )
+              })}
+
+              <li>
+                <a className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700     ">
+                  <span className="sr-only">Next</span>
+                  <svg className="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>}
+
+
+
+
+    </>
   )
 }

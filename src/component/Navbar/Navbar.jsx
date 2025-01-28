@@ -28,19 +28,19 @@ export default function Navbar() {
     <div className="hidden w-full md:block md:w-auto" id="navbar-default">
       {token ? <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row  rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
         <li>
-              <NavLink to="/e-commerce" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3 active text-sec" } aria-current="page">Home</NavLink>
+              <NavLink to="/e-commerce" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Home</NavLink>
             </li>
         <li>
-          <NavLink to="/e-commerce/product" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3 active text-sec" } aria-current="page">Product</NavLink>
+          <NavLink to="/e-commerce/product" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Product</NavLink>
         </li>
         <li>
-          <NavLink to="/e-commerce/cart" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3 active text-sec" } aria-current="page">Cart</NavLink>
+          <NavLink to="/e-commerce/cart" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Cart</NavLink>
         </li>
         <li>
-          <NavLink to="/e-commerce/brands" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3 active text-sec" } aria-current="page">Brands</NavLink>
+          <NavLink to="/e-commerce/brands" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Brands</NavLink>
         </li>
         <li>
-          <NavLink to="/e-commerce/category" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3 active text-sec" } aria-current="page">Category</NavLink>
+          <NavLink to="/e-commerce/category" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Category</NavLink>
         </li>
         
       </ul> : ""}
