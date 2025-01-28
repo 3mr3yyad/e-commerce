@@ -49,7 +49,7 @@ export default function Home() {
               let { _id, title, imageCover, price, ratingsAverage, category } = product;
               let { name } = category;
               return (
-                <div key={_id} className='lg:w-2/12 md:w-3/12 sm:w-6/12 w-full p-2 mb-2 hover:border rounded hover:border-main duration-500 group overflow-hidden'>
+                <div key={_id} className='lg:w-2/12 md:w-3/12 sm:w-6/12 max-sm:w-6/12 w-full p-2 mb-2 hover:border rounded hover:border-main duration-500 group overflow-hidden'>
                   <Link to={`/e-commerce/product-details/${_id}`}>
                   <img src={imageCover} className='w-full' alt={title} />
                   <h5 className='text-main text-sm'>{name}</h5>

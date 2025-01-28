@@ -21,7 +21,7 @@ export default function Navbar() {
         <img src={LogoImg} className="h-8" alt="Flowbite Logo" />
         
     </Link>
-    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-12 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-12 h-10 justify-center text-sm text-main ms-auto rounded-lg border border-main md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-600 " aria-controls="navbar-default" aria-expanded="false">
         <span className="sr-only">Open main menu</span>
         
     </button>
@@ -78,9 +78,6 @@ export default function Navbar() {
         <li>
           <NavLink to="/e-commerce/login"  className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3 active text-sec" } aria-current="page">LogIn</NavLink>
         </li> </> }
-        
-        
-        
       </ul>
     </div>
   </div>
