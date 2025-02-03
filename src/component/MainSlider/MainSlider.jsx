@@ -21,18 +21,18 @@ export default function MainSlider() {
                 <div className="w-9/12">
                     <Slider {...settings}>
                         <div >
-                            <img className="w-full h-96 sm:h-48 max-sm:h-48 object-cover" src={img1} alt="" />
+                            <img className="w-full lg:h-96 sm:h-48 max-sm:h-48 object-cover" src={img1} alt="" />
                         </div>
                         <div>
-                            <img className="w-full h-96 sm:h-48 max-sm:h-48 object-cover" src={img2} alt="" />
+                            <img className="w-full lg:h-96 sm:h-48 max-sm:h-48 object-cover" src={img2} alt="" />
                         </div>
                         <div>
-                            <img className="w-full h-96 sm:h-48 max-sm:h-48 object-cover" src={img3} alt="" />
+                            <img className="w-full lg:h-96 sm:h-48 max-sm:h-48 object-cover" src={img3} alt="" />
                         </div>
                     </Slider></div>
                 <div className="w-3/12">
-                    <div><img src={img2} className="w-full h-48 sm:h-24 max-sm:h-24 object-cover" alt="" /></div>
-                    <div><img src={img3} className="w-full h-48 sm:h-24 max-sm:h-24 object-cover" alt="" /></div>
+                    <div><img src={img2} className="w-full lg:h-48 sm:h-24 max-sm:h-24 object-cover" alt="" /></div>
+                    <div><img src={img3} className="w-full lg:h-48 sm:h-24 max-sm:h-24 object-cover" alt="" /></div>
                 </div>
             </div>
         </>

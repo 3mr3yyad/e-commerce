@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import MainSlider from '../MainSlider/MainSlider'
 import CategorySlider from './../CategorySlider/CategorySlider';
 import { useQuery } from '@tanstack/react-query';

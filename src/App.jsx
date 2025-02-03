@@ -14,7 +14,7 @@ import AuthContextProvider from "./Context/AuthContextProvider";
 import ProtectingRouting from "./ProtectingRouting/ProtectingRouting";
 import ProductDetails from './component/ProductDetails/ProductDetails';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 
 export default function App() {
   let router = createBrowserRouter([
@@ -40,7 +40,6 @@ export default function App() {
 
     <>
       <QueryClientProvider client={client}>
-      
         <AuthContextProvider>
           <RouterProvider router={router}></RouterProvider>
         </AuthContextProvider>
