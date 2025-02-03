@@ -1,32 +1,26 @@
+import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import Slider from "react-slick"
+
 
 
 export default function ProductDetails() {
-    let [product, setProduct] = useState(null)
     let { id } = useParams()
-    let [loading, setLoading] = useState(true)
-    function getDetails() {
-        setLoading(true)
-        axios
-            .get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
-            .then((req) => {
-                setProduct(req.data.data)
-            }).finally(() => {
-                setLoading(false)
-            })
-    }
-    useEffect(() => {
-        getDetails(id)
-    }, [id])
+    let {isLoading, data } = useQuery({
+        queryKey: ['productDetails', id],
+        queryFn: function () {
+            return  axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
+        }
+    })
+    let product = data?.data?.data;
+
     function changeImg(e) {
         let imgSrc = e.target.getAttribute("src")
         document.getElementById("mainImg").setAttribute("src", imgSrc)
     }
     return (
-        <>{loading ? <div className='flex justify-center items-center h-screen'><span className="loader"></span></div> :
+        <>{isLoading ? <div className='flex justify-center items-center h-screen'><span className="loader"></span></div> :
             <div className="w-10/12 mx-auto my-16">
                 <div className="flex justify-between items-center flex-wrap">
                     <div className="md:w-3/12 max-sm:w-full sm:w-full sm:mb-4 max-sm:mb-4">

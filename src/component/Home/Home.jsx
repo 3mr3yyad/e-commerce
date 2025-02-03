@@ -3,49 +3,37 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import MainSlider from '../MainSlider/MainSlider'
 import CategorySlider from './../CategorySlider/CategorySlider';
+import { useQuery } from '@tanstack/react-query';
 
 export default function Home() {
-  let [productList, setproductList] = useState(null)
-  let [pagesNums, setPagesNums] = useState(null)
-  let [loading, setLoading] = useState(true)
 
-  function getAllProducts(page = 1) {
-    setLoading(true)
-    axios
-      .get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}`)
-      .then((req) => {
-        setproductList(req.data.data)
-        let nums = []
-        for (let i = 1; i <= req.data.metadata.numberOfPages; i++) {
-          nums.push(i)
-        }
-        setPagesNums(nums)
-        
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      .finally(() => {
-        setLoading(false)
-    })
+  let [page, setPage] = useState(1)
+  function getAllProducts() {
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}`)
   }
-  useEffect(() => {
-    getAllProducts();
-  }, [])
+  
+  let { data, isLoading, isError, error } = useQuery({
+    queryKey: ['product', page],
+    queryFn: getAllProducts
+  })
+  let nums = [];
+  for (let i = 1; i <= data?.data?.metadata?.numberOfPages; i++){
+    nums.push(i)
+  }
 
   function getPageNum(e) {
     let page = e.target.getAttribute("page")
-    getAllProducts(page)
+    setPage(page)
   }
 
   return (
     <>
-      {loading ? <div className='flex justify-center items-center h-screen'><span className="loader"></span></div> :
+      {isLoading ? <div className='flex justify-center items-center h-screen'><span className="loader"></span></div> :
         <div className='w-11/12 mx-auto my-6'>
           <MainSlider />
           <CategorySlider/>
           <div className='flex flex-wrap'>
-            {productList?.map((product) => {
+            {data?.data?.data?.map((product) => {
               let { _id, title, imageCover, price, ratingsAverage, category } = product;
               let { name } = category;
               return (
@@ -75,7 +63,7 @@ export default function Home() {
                   </svg>
                 </a>
               </li>
-              {pagesNums?.map((el) => {
+              {nums?.map((el) => {
                 return (
                   <li key={el} onClick={getPageNum}>
                     <a page={el} href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{el}</a>
