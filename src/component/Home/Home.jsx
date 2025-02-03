@@ -12,7 +12,7 @@ export default function Home() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}`)
   }
   
-  let { data, isLoading, isError, error } = useQuery({
+  let { data, isLoading } = useQuery({
     queryKey: ['product', page],
     queryFn: getAllProducts
   })
