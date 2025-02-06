@@ -3,9 +3,11 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import LogoImg from '../../assets/images/freshcart-logo.svg'
 import { useContext } from 'react'
 import { AuthContext } from '../../Context/AuthContextProvider'
+import { cartContext } from '../../Context/CartContextProvider'
 
 export default function Navbar() {
   let { token, userData, setToken } = useContext(AuthContext)
+  let {numsCartItems} = useContext(cartContext)
   let navg = useNavigate()
   function logout() {
     localStorage.removeItem("token")
@@ -31,16 +33,18 @@ export default function Navbar() {
               <NavLink to="/e-commerce" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Home</NavLink>
             </li>
         <li>
-          <NavLink to="/e-commerce/product" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Product</NavLink>
+          <NavLink to="/e-commerce/product" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Products</NavLink>
         </li>
-        <li>
-          <NavLink to="/e-commerce/cart" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Cart</NavLink>
-        </li>
+        
         <li>
           <NavLink to="/e-commerce/brands" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Brands</NavLink>
         </li>
         <li>
           <NavLink to="/e-commerce/category" className={(x)=>x.isActive? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec" } aria-current="page">Category</NavLink>
+            </li>
+            <li className='relative'>
+              <NavLink to="/e-commerce/cart" className={(x) => x.isActive ? "block py-2 px-3 text-main" : "block py-2 px-3  text-sec"} aria-current="page">Cart<i className='fa-solid fa-cart-shopping'></i></NavLink>
+              <span className='absolute top-0 end-0 bg-red-500 rounded px-1 text-white text-xs'>{numsCartItems}</span>
         </li>
         
       </ul> : ""}

@@ -1,13 +1,16 @@
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import MainSlider from '../MainSlider/MainSlider'
 import CategorySlider from './../CategorySlider/CategorySlider';
 import { useQuery } from '@tanstack/react-query';
+import { cartContext } from '../../Context/CartContextProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Home() {
 
   let [page, setPage] = useState(1)
+  let {addUserCart, setNumsCartItems} = useContext(cartContext)
   function getAllProducts() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}`)
   }
@@ -26,8 +29,19 @@ export default function Home() {
     setPage(page)
   }
 
+  function addToCart(id) {
+    addUserCart(id)
+      .then((req) => {
+        setNumsCartItems(req.data.numOfCartItems)
+        toast.success(req.data.message)
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message)
+    })
+  }
   return (
     <>
+      <Toaster/>
       {isLoading ? <div className='flex justify-center items-center h-screen'><span className="loader"></span></div> :
         <div className='w-11/12 mx-auto my-6'>
           <MainSlider />
@@ -47,7 +61,7 @@ export default function Home() {
                     <span className='text-gray-500'><i className='fa-solid fa-star text-yellow-300'></i>{ratingsAverage}</span>
                   </div>
                   </Link>
-                  <button className='bg-main text-white p-2 rounded hover:bg-green-600 w-full mt-3 translate-y-20 group-hover:translate-y-0 transition-all'>add to cart <i className="fa-solid fa-circle-plus"></i></button>
+                  <button onClick={()=>addToCart(_id)} className='bg-main text-white p-2 rounded hover:bg-green-600 w-full mt-3 translate-y-28 group-hover:translate-y-0 transition-all'>add to cart <i className="fa-solid fa-circle-plus"></i></button>
                 </div>
               )
             })}

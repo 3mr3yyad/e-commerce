@@ -14,6 +14,9 @@ import AuthContextProvider from "./Context/AuthContextProvider";
 import ProtectingRouting from "./ProtectingRouting/ProtectingRouting";
 import ProductDetails from './component/ProductDetails/ProductDetails';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import CartContextProvider from "./Context/CartContextProvider";
+import ShipingDetails from "./component/ShipingDetails/ShipingDetails";
+import AllOrders from "./component/AllOrders/AllOrders";
 
 
 export default function App() {
@@ -27,6 +30,8 @@ export default function App() {
         { path: 'brands', element: <ProtectingRouting> <Brands /> </ProtectingRouting> },
         { path: 'category', element: <ProtectingRouting> <Category /> </ProtectingRouting> },
         { path: 'product-details/:id', element: <ProtectingRouting> <ProductDetails /> </ProtectingRouting> },
+        { path: 'shiping-details/:id', element: <ProtectingRouting> <ShipingDetails /> </ProtectingRouting> },
+        { path: 'allorders', element: <ProtectingRouting> <AllOrders/> </ProtectingRouting> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <SignUp /> },
         { path: 'forget-password', element: <ForgetPassword /> },
@@ -41,7 +46,9 @@ export default function App() {
     <>
       <QueryClientProvider client={client}>
         <AuthContextProvider>
-          <RouterProvider router={router}></RouterProvider>
+          <CartContextProvider>
+            <RouterProvider router={router} />
+          </CartContextProvider>
         </AuthContextProvider>
       </QueryClientProvider>
 
