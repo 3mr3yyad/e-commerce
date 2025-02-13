@@ -33,7 +33,7 @@ export default function Signup() {
     await axios.post(`${baseURL}/api/v1/auth/signup`, data)
       .then((req) => {
         if (req.data.message == 'success') {
-          navg('login')
+          navg('/login')
         }
       }).catch((err) => { setError(err.response.data.message) });
   }

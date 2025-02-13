@@ -99,7 +99,7 @@ export default function Cart() {
             </div>
             <div className="flex mt-5">
               <div className="w-9/12">
-                <Link to={"/e-commerce/shiping-details/"+cartData._id}>
+                <Link to={"/shiping-details/"+cartData._id}>
                 <button className="text-white bg-main hover:bg-green-600 transition-all rounded py-1 w-full text-center ">CheckOut <i className="fa-solid fa-cash-register"></i></button>
                 </Link>
               </div>
@@ -112,7 +112,7 @@ export default function Cart() {
         :
         <div className="w-10/12 mx-auto bg-gray-200 my-5 rounded p-4 text-center h-96">
           <h2 className="font-semibold text-4xl text-main mt-10 pb-14">Your Cart Is Empty</h2>
-          <Link to="/e-commerce" className="underline text-blue-500 hover:text-blue-700 transition-all"><i className="fa-solid fa-basket-shopping"></i> START SHOPING.. !</Link>
+          <Link to="/" className="underline text-blue-500 hover:text-blue-700 transition-all"><i className="fa-solid fa-basket-shopping"></i> START SHOPING.. !</Link>
         </div>
       }
     </>

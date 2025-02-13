@@ -6,6 +6,6 @@ export default function ProtectingRouting({ children }) {
     if (localStorage.getItem("token")) {
         return children;
     } else {
-        return <Navigate to="/e-commerce/login" />;
+        return <Navigate to="/login" />;
     }
 }

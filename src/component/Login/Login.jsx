@@ -34,7 +34,7 @@ export default function Login() {
         setToken(req.data.token)
         localStorage.setItem("token", req.data.token)
         decodeData(req.data.token)
-        navg('/e-commerce')
+        navg('/')
       }
     }).catch((err) => { setError(err.response.data.message) });
   }
@@ -75,7 +75,7 @@ export default function Login() {
 
           <button disabled={!(loginForm.isValid && loginForm.dirty)}
           type="submit" className="ml-auto text-white bg-main hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center disabled:opacity-50 disabled:hover:bg-main">Login</button>
-        <Link to="/e-commerce/forget-password" className='ms-5 mt-3 text-sm text-blue-500 hover:text-blue-700 hover:underline'>Forgot your password..?</Link>
+        <Link to="/forget-password" className='ms-5 mt-3 text-sm text-blue-500 hover:text-blue-700 hover:underline'>Forgot your password..?</Link>
         </form>
       </div>
   )
