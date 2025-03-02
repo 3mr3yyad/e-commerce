@@ -12,7 +12,7 @@ export default function Home() {
   let [page, setPage] = useState(1)
   let {addUserCart, setNumsCartItems} = useContext(cartContext)
   function getAllProducts() {
-    return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}`)
+    return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}&limit=24`)
   }
   
   let { data, isLoading } = useQuery({
@@ -80,7 +80,7 @@ export default function Home() {
               {nums?.map((el) => {
                 return (
                   <li key={el} onClick={getPageNum}>
-                    <a page={el} href="#" className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{el}</a>
+                    <a page={el}  className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{el}</a>
                   </li>
                 )
               })}
