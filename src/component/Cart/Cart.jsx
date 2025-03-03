@@ -110,7 +110,7 @@ export default function Cart() {
         </div>
         </>
         :
-        <div className="w-10/12 mx-auto bg-gray-200 my-5 rounded p-4 text-center h-96">
+        <div className="w-10/12 mx-auto bg-gray-100 my-5 rounded p-4 text-center h-96">
           <h2 className="font-semibold text-4xl text-main mt-10 pb-14">Your Cart Is Empty</h2>
           <Link to="/" className="underline text-blue-500 hover:text-blue-700 transition-all"><i className="fa-solid fa-basket-shopping"></i> START SHOPING.. !</Link>
         </div>

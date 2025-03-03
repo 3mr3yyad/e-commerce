@@ -19,10 +19,12 @@ export default function Footer() {
           <h3 className='font-semibold'>Payment Partenres</h3>
           <img src={Payments} className="h-16" alt="Payment methods" />
           </div>
-          <div className='flex items-center'>
+          <div className='flex items-center flex-wrap'>
           <h3 className='font-semibold'>You can find us on</h3>
-          <img src={Stores} className="h-14" alt="Payment methods" />
-          <img src={Stores_2} className="h-14" alt="Payment methods" />
+            <div className='flex'>
+            <img src={Stores} className="h-14" alt="Payment methods" />
+            <img src={Stores_2} className="h-14" alt="Payment methods" />
+          </div>
           </div>
         </div>
       </footer>

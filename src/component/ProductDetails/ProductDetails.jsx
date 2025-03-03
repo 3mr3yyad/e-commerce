@@ -1,19 +1,15 @@
-import { useQuery } from "@tanstack/react-query"
-import axios from "axios"
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { cartContext } from "../../Context/CartContextProvider"
 import toast, { Toaster } from "react-hot-toast"
+import useApi from "../../Context/Hooks/useApi"
 
 export default function ProductDetails() {
     let { id } = useParams()
     let {addUserCart, setNumsCartItems} = useContext(cartContext)
-    let { isLoading, data } = useQuery({
-        queryKey: ['productDetails', id],
-        queryFn: function () {
-            return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
-        }
-    })
+    let { isLoading, data } = useApi(`products/${id}`)
+        
+        
     let product = data?.data?.data;
 
     function changeImg(e) {
@@ -56,7 +52,7 @@ export default function ProductDetails() {
                             <p>{product?.price} EGP</p>
                             <span className='text-gray-500'><i className='fa-solid fa-star text-yellow-300'></i>{product?.ratingsAverage}</span>
                         </div>
-                        <button onClick={()=>{addToCart(id)}} className='bg-main text-white p-2 rounded hover:bg-green-600 w-full '>add to cart <i className="fa-solid fa-circle-plus"></i></button>
+                        <button onClick={()=>{addToCart(id)}} className='bg-main text-white p-2 rounded hover:bg-green-600 w-full transition-all'>add to cart <i className="fa-solid fa-circle-plus"></i></button>
 
                     </div>
                 </div>

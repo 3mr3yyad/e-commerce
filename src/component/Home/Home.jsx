@@ -1,25 +1,18 @@
 import {Link} from 'react-router-dom'
-import axios from 'axios'
 import { useContext, useState } from 'react'
 import MainSlider from '../MainSlider/MainSlider'
 import CategorySlider from './../CategorySlider/CategorySlider';
-import { useQuery } from '@tanstack/react-query';
 import { cartContext } from '../../Context/CartContextProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import useApi from '../../Context/Hooks/useApi';
 
 export default function Home() {
 
   let [page, setPage] = useState(1)
-  let {addUserCart, setNumsCartItems} = useContext(cartContext)
-  function getAllProducts() {
-    return axios.get(`https://ecommerce.routemisr.com/api/v1/products?page=${page}&limit=24`)
-  }
-  
-  let { data, isLoading } = useQuery({
-    queryKey: ['product', page],
-    queryFn: getAllProducts
-  })
+  let { addUserCart, setNumsCartItems } = useContext(cartContext)
+  let { data, isLoading } = useApi(`products?page=${page}&limit=24`)
   let nums = [];
+
   for (let i = 1; i <= data?.data?.metadata?.numberOfPages; i++){
     nums.push(i)
   }
@@ -79,7 +72,7 @@ export default function Home() {
               </li>
               {nums?.map((el) => {
                 return (
-                  <li key={el} onClick={getPageNum}>
+                  <li key={el} onClick={getPageNum} className='cursor-pointer'>
                     <a page={el}  className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">{el}</a>
                   </li>
                 )
